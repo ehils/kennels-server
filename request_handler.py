@@ -6,6 +6,7 @@ from views import get_all_animals, get_single_animal, get_all_locations, get_sin
 import json
 
 from views.animal_requests import delete_animal
+from views.employee_requests import create_employee
 
 # Here's a class. It inherits from another class.
 # Q: what does inherit mean in this situation?
@@ -268,18 +269,18 @@ class HandleRequests(BaseHTTPRequestHandler):
     #     # Set response code to 'Created'
         
 
-    #     # Initialize new employee
-    #     new_employee = None
+        # Initialize new employee
+        new_employee = None
 
-    #     # Add a new employee to the list. Don't worry about
-    #     # the orange squiggle, you'll define the create_employee
-    #     # function next.
-    #     if resource == "employees":
-    #         new_employee = create_employee(post_body)
+        # Add a new employee to the list. Don't worry about
+        # the orange squiggle, you'll define the create_employee
+        # function next.
+        if resource == "employees":
+            new_employee = create_employee(post_body)
 
-    #     # Encode the new employee and send in response
-    #         self.wfile.write(f"{new_employee}".encode())
-    #     # Set response code to 'Created'
+        # Encode the new employee and send in response
+            self.wfile.write(f"{new_employee}".encode())
+        # Set response code to 'Created'
         
     #     # Initialize new location
     #     new_location = None

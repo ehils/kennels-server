@@ -61,3 +61,7 @@ DELETE from Animal WHERE id >= 6;
 DELETE from Customer WHERE id >= 5;
 DELETE from Employee WHERE id >= 6;
 DELETE from Location WHERE id >= 3;
+
+-- alter table, add column,
+ALTER TABLE Employee 
+ADD animal_id INTEGER

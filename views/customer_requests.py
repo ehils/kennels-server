@@ -103,14 +103,12 @@ def update_customer(id, new_customer):
         UPDATE customer
             SET
                 name = ?,
-                breed = ?,
-                status = ?,
-                location_id = ?,
-                customer_id = ?
+                address = ?,
+                email= ?,
+                password = ?
         WHERE id = ?
-        """, (new_customer['name'], new_customer['breed'],
-              new_customer['status'], new_customer['locationId'],
-              new_customer['customerId'], id, ))
+        """, (new_customer['fame'], new_customer['address'],
+              new_customer['email'], new_customer['password'], id, ))
 
         # Were any rows affected?
         # Did the client send an `id` that exists?

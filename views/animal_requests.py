@@ -71,8 +71,16 @@ def get_single_animal(id):
             a.breed,
             a.status,
             a.location_id,
-            a.customer_id
+            a.customer_id,
+            c.name customer_name,
+            c.address customer_address,
+            l.name location_name,
+            l.address location_address
         FROM animal a
+        JOIN Customer as c
+            ON c.id = a.customer_id
+        JOIN Location as l
+            ON l.id = a.location_id
         WHERE a.id = ?
         """, ( id, ))
 
@@ -83,6 +91,10 @@ def get_single_animal(id):
         animal = Animal(data['id'], data['name'], data['breed'],
                             data['status'], data['location_id'],
                             data['customer_id'])
+        customer = Customer(data['customer_id'], data['customer_name'], data['customer_address'])
+        location = Location(data['location_id'], data['location_name'], data['location_address'])
+        animal.customer = customer.__dict__
+        animal.location = location.__dict__
 
         return json.dumps(animal.__dict__)
 def delete_animal(id):
@@ -113,7 +125,10 @@ def get_animals_by_location(location_id):
         WHERE a.location_id = ?
         """, (location_id, ))
 
+        # create an empty list
         animals = []
+        # Q: Clarification on the "fetchall()"?
+        # A: 
         dataset = db_cursor.fetchall()
 
         for row in dataset:
